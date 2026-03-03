@@ -18,7 +18,7 @@ case $DNS_CHOICE in
   2) CLIENT_DNS="8.8.8.8, 8.8.4.4" ;;
   3) CLIENT_DNS="208.67.222.222, 208.67.220.220" ;;
   4) read -rp "Введи DNS (через запятую): " CLIENT_DNS ;;
-  *) echo "Неверный выбор, используем Cloudflare"; CLIENT_DNS="1.1.1.1, 1.0.0.1" ;;
+  *) CLIENT_DNS="1.1.1.1, 1.0.0.1" ;;
 esac
 
 # ── Выбор IP клиента ───────────────────────────────────────
@@ -41,13 +41,31 @@ case $ADDR_CHOICE in
     read -rp "Введи IP сервера (пример: 10.20.0.1/24): " SERVER_ADDR
     read -rp "Введи подсеть для NAT (пример: 10.20.0.0/24): " CLIENT_NET
     ;;
-  *) echo "Неверный выбор, используем 10.8.0.x"; CLIENT_ADDR="10.8.0.2/32"; SERVER_ADDR="10.8.0.1/24"; CLIENT_NET="10.8.0.0/24" ;;
+  *) CLIENT_ADDR="10.8.0.2/32"; SERVER_ADDR="10.8.0.1/24"; CLIENT_NET="10.8.0.0/24" ;;
+esac
+
+# ── Выбор MTU ──────────────────────────────────────────────
+echo ""
+echo "Выбери MTU:"
+echo "  1) 1420 — стандартный"
+echo "  2) 1380 — лучше для мобильных / нестабильных сетей"
+echo "  3) 1280 — максимальная совместимость"
+echo "  4) Ввести вручную"
+read -rp "Выбор [1-4]: " MTU_CHOICE
+
+case $MTU_CHOICE in
+  1) MTU=1420 ;;
+  2) MTU=1380 ;;
+  3) MTU=1280 ;;
+  4) read -rp "Введи MTU (1280-1420): " MTU ;;
+  *) MTU=1420 ;;
 esac
 
 echo ""
 echo "✓ DNS:    $CLIENT_DNS"
 echo "✓ Клиент: $CLIENT_ADDR"
 echo "✓ Сервер: $SERVER_ADDR"
+echo "✓ MTU:    $MTU"
 read -rp "Продолжить? [y/n]: " CONFIRM
 [[ $CONFIRM != "y" ]] && { echo "Отменено."; exit 0; }
 
@@ -91,6 +109,7 @@ cat > /etc/amnezia/amneziawg/awg0.conf <<EOF
 PrivateKey = $SERVER_PRIVKEY
 Address = $SERVER_ADDR
 ListenPort = $PORT
+MTU = $MTU
 Jc = $Jc
 Jmin = $Jmin
 Jmax = $Jmax
@@ -125,6 +144,7 @@ cat > /root/client1_awg2.conf <<EOF
 PrivateKey = $CLIENT_PRIVKEY
 Address = $CLIENT_ADDR
 DNS = $CLIENT_DNS
+MTU = $MTU
 Jc = $Jc
 Jmin = $Jmin
 Jmax = $Jmax
@@ -156,7 +176,7 @@ echo "======================================="
 echo "✓ Сервер: /etc/amnezia/amneziawg/awg0.conf"
 echo "✓ Клиент: /root/client1_awg2.conf"
 echo "IP: $SERVER_IP:$PORT | Интерфейс: $IFACE"
-echo "DNS: $CLIENT_DNS"
+echo "DNS: $CLIENT_DNS | MTU: $MTU"
 echo "Адрес клиента: $CLIENT_ADDR"
 echo "Jc=$Jc Jmin=$Jmin Jmax=$Jmax"
 echo "S1=$S1 S2=$S2 S3=$S3 S4=$S4"
