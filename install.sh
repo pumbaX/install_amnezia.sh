@@ -8,7 +8,7 @@ apt update && apt upgrade -y
 
 echo "=== Зависимости ==="
 apt install -y software-properties-common python3-launchpadlib \
-linux-headers-$(uname -r) net-tools curl git ufw iptables qrencode
+  linux-headers-$(uname -r) net-tools curl git ufw iptables qrencode
 
 echo "=== AmneziaWG PPA ==="
 add-apt-repository -y ppa:amnezia/ppa
@@ -16,16 +16,13 @@ apt update
 apt install -y amneziawg amneziawg-tools
 
 echo "=== Проверка модуля ==="
-modprobe amneziawg || {
-echo "ОШИБКА: модуль не загрузился. Сделай reboot и запусти install.sh снова"
-exit 1
-}
+modprobe amneziawg || { echo "ОШИБКА: reboot и запусти снова"; exit 1; }
 lsmod | grep amneziawg && echo "✓ модуль загружен"
 
 echo "=== IP Forwarding ==="
 echo 1 > /proc/sys/net/ipv4/ip_forward
 grep -q "net.ipv4.ip_forward=1" /etc/sysctl.conf || \
-echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
+  echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
 sysctl -p
 
 echo "=== Папка конфигов ==="
