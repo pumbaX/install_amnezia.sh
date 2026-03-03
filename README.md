@@ -14,6 +14,7 @@
 |---|---|
 | `install.sh` | Установка зависимостей, модуля amneziawg, настройка firewall |
 | `gen_awg2.sh` | Генерация серверного и клиентского конфига AWG 2.0 с интерактивным выбором параметров |
+| `add_client.sh` | Добавление нового клиента к существующему серверу |
 
 ## Требования к серверу
 
@@ -29,7 +30,7 @@
 ```bash
 git clone https://github.com/pumbaX/install_amnezia.sh.git
 cd install_amnezia.sh
-chmod +x install.sh gen_awg2.sh
+chmod +x install.sh gen_awg2.sh add_client.sh
 ```
 
 ### Шаг 2 — установка
