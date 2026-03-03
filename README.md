@@ -52,7 +52,7 @@ chmod +x install.sh gen_awg2.sh add_client.sh
 ```bash
 ./gen_awg2.sh
 ```
-### Шаг 4 — Добавление клиента
+### Шаг 4 — добавление клиента
 ```bash
 ./add_client.sh
 ```
