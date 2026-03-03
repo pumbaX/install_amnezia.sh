@@ -1,5 +1,5 @@
 
-# Install_amnezia.sh![Uploading Screenshot_5.png…]()
+# Install_amnezia.sh![[Uploading Screenshot_5.png…]()](https://github.com/pumbaX/install_amnezia.sh/blob/main/pic.png)
 
 
 Два скрипта для быстрого развёртывания **AmneziaWG 2.0** на чистом VPS (Ubuntu 22.04 / 24.04).
