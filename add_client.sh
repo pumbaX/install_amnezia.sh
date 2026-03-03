@@ -46,7 +46,9 @@ PRESHARED_KEY=$(awg genpsk)
 SERVER_PUBKEY=$(awg show awg0 public-key)
 SERVER_IP=$(curl -s -4 ifconfig.me)
 PORT=$(grep "^ListenPort" $SERVER_CONF | awk -F= '{print $2}' | tr -d ' ')
-MTU=$(grep "mtu" $SERVER_CONF | grep -o '[0-9]*' | tail -1)
+
+# ── MTU из PostUp серверного конфига ──────────────────────
+MTU=$(grep "PostUp" $SERVER_CONF | grep -oP 'mtu \K\d+' | head -1)
 MTU=${MTU:-1380}
 
 # ── Добавляем peer на сервер ───────────────────────────────
@@ -89,5 +91,6 @@ echo "======================================="
 echo "✓ Клиент: $CLIENT_NAME"
 echo "✓ IP: $CLIENT_ADDR"
 echo "✓ DNS: $CLIENT_DNS"
+echo "✓ MTU: $MTU"
 echo "✓ Конфиг: $CLIENT_FILE"
 echo "======================================="
