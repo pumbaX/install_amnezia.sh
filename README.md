@@ -54,7 +54,9 @@ chmod +x install.sh gen_awg2.sh add_client.sh
 ```
 ### Шаг 4 — добавление клиента
 ```bash
-./add_client.sh
+bash <(curl -s https://raw.githubusercontent.com/pumbaX/install_amnezia.sh/main/add_client.sh)
+
+
 ```
 
 Скрипт интерактивно спросит:
