@@ -119,25 +119,33 @@ rm -rf /etc/amnezia
 rm -f /root/client1_awg2.conf
 ip link delete dev awg0 2>/dev/null || true
 ```
-## WGDashboard install ##
+## WGDashboard Install
 
-Остановить старый Dashboard
+### 1. Остановить старый Dashboard
+```bash
 /opt/WGDashboard/src/wgd.sh stop 2>/dev/null || true
 rm -rf /opt/WGDashboard
+```
 
-Клонировать dev-ветку
-```cd /opt
+### 2. Клонировать dev-ветку
+```bash
+cd /opt
 git clone -b v4.3.2-dev https://github.com/WGDashboard/WGDashboard.git
 cd /opt/WGDashboard/src
 chmod +x wgd.sh
 ```
-Права на папку AWG
-```chmod -R 755 /etc/amnezia/amneziawg
-```
-Установка
-```./wgd.sh install
+
+### 3. Права на папку AmneziaWG
+```bash
+chmod -R 755 /etc/amnezia/amneziawg
 ```
 
-Запуск
-```./wgd.sh start
+### 4. Установка
+```bash
+./wgd.sh install
+```
+
+### 5. Запуск
+```bash
+./wgd.sh start
 ```
