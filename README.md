@@ -121,22 +121,23 @@ ip link delete dev awg0 2>/dev/null || true
 ```
 ## WGDashboard install ##
 
-# Остановить старый Dashboard
+Остановить старый Dashboard
 /opt/WGDashboard/src/wgd.sh stop 2>/dev/null || true
 rm -rf /opt/WGDashboard
 
-# Клонировать dev-ветку
-cd /opt
+Клонировать dev-ветку
+```cd /opt
 git clone -b v4.3.2-dev https://github.com/WGDashboard/WGDashboard.git
 cd /opt/WGDashboard/src
 chmod +x wgd.sh
+```
+Права на папку AWG
+```chmod -R 755 /etc/amnezia/amneziawg
+```
+Установка
+```./wgd.sh install
+```
 
-# Права на папку AWG
-chmod -R 755 /etc/amnezia/amneziawg
-
-# Установка
-./wgd.sh install
-
-# Запуск
-./wgd.sh start
-
+Запуск
+```./wgd.sh start
+```
