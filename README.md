@@ -1,5 +1,5 @@
 
-![image](https://github.com/pumbaX/install_amnezia.sh/blob/main/pic.png)
+![image](https://github.com/pumbaX/install_amnezia2/blob/main/pic.png)
 
 # Install_amnezia.sh!
 Два скрипта для быстрого развёртывания **AmneziaWG 2.0** на чистом VPS (Ubuntu 22.04 / 24.04).
@@ -29,7 +29,7 @@
 
 ```bash
 git clone https://github.com/pumbaX/install_amnezia.sh.git
-cd install_amnezia.sh
+cd install_amnezia2
 chmod +x install.sh gen_awg2.sh add_client.sh
 ```
 
@@ -54,7 +54,7 @@ chmod +x install.sh gen_awg2.sh add_client.sh
 ```
 ### Шаг 4 — добавление клиента
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/pumbaX/install_amnezia.sh/main/add_client.sh)
+bash <(curl -s https://raw.githubusercontent.com/pumbaX/install_amnezia2/main/add_client.sh)
 
 
 ```
