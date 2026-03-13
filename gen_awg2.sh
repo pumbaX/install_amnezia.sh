@@ -27,8 +27,8 @@ echo ""
 echo "Выбери Address для клиента:"
 echo "  1) 10.8.0.2/32"
 echo "  2) 10.8.1.2/32"
-echo "  3) 10.10.0.2/32"
-echo "  4) 10.10.11.2/32"
+echo "  3) 10.11.2.2/32"
+echo "  4) 10.20.11.2/32"
 echo "  5) Ввести вручную"
 read -rp "Выбор [1-5] (Enter = 10.8.0.2): " ADDR_CHOICE
 ADDR_CHOICE=${ADDR_CHOICE:-1}
@@ -36,8 +36,8 @@ ADDR_CHOICE=${ADDR_CHOICE:-1}
 case $ADDR_CHOICE in
   1) CLIENT_ADDR="10.8.0.2/32";   SERVER_ADDR="10.8.0.1/24";   CLIENT_NET="10.8.0.0/24" ;;
   2) CLIENT_ADDR="10.8.1.2/32";   SERVER_ADDR="10.8.1.1/24";   CLIENT_NET="10.8.1.0/24" ;;
-  3) CLIENT_ADDR="10.10.0.2/32";  SERVER_ADDR="10.10.0.1/24";  CLIENT_NET="10.10.0.0/24" ;;
-  4) CLIENT_ADDR="10.10.11.2/32"; SERVER_ADDR="10.10.11.1/24"; CLIENT_NET="10.10.11.0/24" ;;
+  3) CLIENT_ADDR="10.11.2.2/32";  SERVER_ADDR="10.11.2.1/24";  CLIENT_NET="10.11.2.0/24" ;;
+  4) CLIENT_ADDR="10.20.11.2/32"; SERVER_ADDR="10.20.11.1/24"; CLIENT_NET="10.20.11.0/24" ;;
   5)
     read -rp "IP клиента: " CLIENT_ADDR
     read -rp "IP сервера: " SERVER_ADDR
